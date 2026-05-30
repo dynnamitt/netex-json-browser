@@ -13,10 +13,14 @@ import { SchemaTable } from './components/SchemaTable';
 
 type ThemeKey = 'amber' | 'neon';
 
-const THEMES: Record<ThemeKey, { theme: typeof amberTheme; dot: string; label: string }> = {
-  amber: { theme: amberTheme, dot: '#e8a020', label: 'Amber' },
-  neon:  { theme: neonTheme,  dot: '#e040fb', label: 'Neon'  },
+const THEMES: Record<ThemeKey, { theme: typeof amberTheme; label: string }> = {
+  amber: { theme: amberTheme, label: 'Amber' },
+  neon:  { theme: neonTheme,  label: 'Neon'  },
 };
+
+const THEME_KEYS = Object.keys(THEMES) as ThemeKey[];
+
+const swatchColor = (k: ThemeKey) => THEMES[k].theme.palette.primary.main;
 
 function LoadingState() {
   return (
@@ -50,7 +54,6 @@ function AppContent({ themeKey, onThemeChange }: { themeKey: ThemeKey; onThemeCh
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
           <Box sx={{
             width: 8, height: 8, borderRadius: '50%',
-            background: 'primary.main',
             bgcolor: 'primary.main',
             boxShadow: theme => `0 0 8px ${theme.palette.primary.main}88`,
           }} />
@@ -79,15 +82,15 @@ function AppContent({ themeKey, onThemeChange }: { themeKey: ThemeKey; onThemeCh
 
         {/* Theme swatches */}
         <Box sx={{ display: 'flex', gap: 0.75, alignItems: 'center' }}>
-          {(Object.keys(THEMES) as ThemeKey[]).map(k => (
+          {THEME_KEYS.map(k => (
             <Tooltip key={k} title={THEMES[k].label} placement="bottom">
               <Box
                 onClick={() => onThemeChange(k)}
                 sx={{
                   width: 14, height: 14,
                   borderRadius: '50%',
-                  background: THEMES[k].dot,
-                  boxShadow: k === themeKey ? `0 0 0 2px rgba(255,255,255,0.15), 0 0 8px ${THEMES[k].dot}88` : 'none',
+                  background: swatchColor(k),
+                  boxShadow: k === themeKey ? `0 0 0 2px rgba(255,255,255,0.15), 0 0 8px ${swatchColor(k)}88` : 'none',
                   cursor: 'pointer',
                   opacity: k === themeKey ? 1 : 0.4,
                   transition: 'all 0.2s',
