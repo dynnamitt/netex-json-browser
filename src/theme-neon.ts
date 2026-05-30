@@ -1,24 +1,20 @@
 import { createTheme } from '@mui/material/styles';
 import type {} from '@mui/x-data-grid/themeAugmentation';
 
-export const theme = createTheme({
+const P = '#e040fb';   // vivid magenta
+const S = '#00e5ff';   // electric cyan
+const BG = '#08090f';  // near-black with blue cast
+const PAPER = '#0d0f1e';
+
+export const neonTheme = createTheme({
   palette: {
     mode: 'dark',
-    background: {
-      default: '#0d0f14',
-      paper: '#131720',
-    },
-    primary: {
-      main: '#e8a020',
-      light: '#f5bc50',
-      dark: '#b57a10',
-    },
-    secondary: {
-      main: '#4fc3f7',
-    },
+    background: { default: BG, paper: PAPER },
+    primary:   { main: P, light: '#ea80fc', dark: '#ab00c7' },
+    secondary: { main: S },
     text: {
-      primary: '#e8e9ed',
-      secondary: '#8b92a5',
+      primary: '#eef0ff',
+      secondary: '#7b82b0',
     },
     divider: 'rgba(255,255,255,0.06)',
   },
@@ -40,15 +36,15 @@ export const theme = createTheme({
     MuiCssBaseline: {
       styleOverrides: {
         '*': { boxSizing: 'border-box' },
-        body: { background: '#0d0f14' },
+        body: { background: BG },
         '::-webkit-scrollbar': { width: '6px', height: '6px' },
         '::-webkit-scrollbar-track': { background: 'transparent' },
         '::-webkit-scrollbar-thumb': {
-          background: 'rgba(232,160,32,0.25)',
+          background: 'rgba(224,64,251,0.3)',
           borderRadius: '3px',
         },
         '::-webkit-scrollbar-thumb:hover': {
-          background: 'rgba(232,160,32,0.5)',
+          background: 'rgba(224,64,251,0.55)',
         },
       },
     },
@@ -59,33 +55,29 @@ export const theme = createTheme({
           background: 'transparent',
           fontFamily: '"Outfit", sans-serif',
           '& .MuiDataGrid-columnHeaders': {
-            background: 'rgba(232,160,32,0.06)',
-            borderBottom: '1px solid rgba(232,160,32,0.2)',
+            background: 'rgba(224,64,251,0.07)',
+            borderBottom: `1px solid rgba(224,64,251,0.22)`,
           },
           '& .MuiDataGrid-columnHeaderTitle': {
             fontWeight: 600,
             fontSize: '0.75rem',
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            color: '#e8a020',
+            color: P,
           },
           '& .MuiDataGrid-cell': {
             borderBottom: '1px solid rgba(255,255,255,0.04)',
             cursor: 'pointer',
           },
           '& .MuiDataGrid-row:hover': {
-            background: 'rgba(232,160,32,0.06)',
+            background: 'rgba(224,64,251,0.07)',
           },
           '& .MuiDataGrid-row.Mui-selected': {
-            background: 'rgba(232,160,32,0.1)',
-            '&:hover': { background: 'rgba(232,160,32,0.14)' },
+            background: 'rgba(224,64,251,0.12)',
+            '&:hover': { background: 'rgba(224,64,251,0.16)' },
           },
           '& .MuiDataGrid-footerContainer': {
             borderTop: '1px solid rgba(255,255,255,0.06)',
-          },
-          '& .MuiDataGrid-toolbarContainer': {
-            padding: '8px 16px',
-            borderBottom: '1px solid rgba(255,255,255,0.06)',
           },
         },
       },
@@ -93,8 +85,8 @@ export const theme = createTheme({
     MuiDrawer: {
       styleOverrides: {
         paper: {
-          background: '#131720',
-          borderLeft: '1px solid rgba(232,160,32,0.15)',
+          background: PAPER,
+          borderLeft: `1px solid rgba(224,64,251,0.18)`,
         },
       },
     },
