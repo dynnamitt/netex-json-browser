@@ -37,7 +37,7 @@ function AppContent({ themeKey, onThemeChange }: { themeKey: ThemeKey; onThemeCh
   const state = useSchema();
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden', background: 'background.default' }}>
+    <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh', overflow: 'hidden', bgcolor: 'background.default' }}>
       <Box
         component="header"
         sx={{
