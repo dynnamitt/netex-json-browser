@@ -8,10 +8,12 @@ import Checkbox from '@mui/material/Checkbox';
 import ListItemText from '@mui/material/ListItemText';
 import InputAdornment from '@mui/material/InputAdornment';
 import Link from '@mui/material/Link';
+import Tooltip from '@mui/material/Tooltip';
 import Typography from '@mui/material/Typography';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { DefinitionRow } from '../types';
 import { RoleBadge } from './RoleBadge';
 import { DefinitionDrawer } from './DefinitionDrawer';
@@ -39,6 +41,31 @@ const COLUMNS: GridColDef<DefinitionRow>[] = [
         {params.value as string}
       </Box>
     ),
+  },
+  {
+    field: 'description',
+    headerName: 'Descr.',
+    sortable: false,
+    filterable: false,
+    width: 48,
+    align: 'center',
+    headerAlign: 'center',
+    renderCell: (params: GridRenderCellParams<DefinitionRow>) => {
+      const description = params.row.description;
+      if (!description) return null;
+      return (
+        <Tooltip title={description} placement="bottom-start">
+          <InfoOutlinedIcon
+            sx={{
+              fontSize: '1rem',
+              color: 'text.secondary',
+              cursor: 'help',
+              '&:hover': { color: 'primary.main' },
+            }}
+          />
+        </Tooltip>
+      );
+    },
   },
   {
     field: 'netexRole',
