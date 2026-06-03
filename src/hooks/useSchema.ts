@@ -30,7 +30,7 @@ export function useSchema(): State {
 
     (async () => {
       try {
-        const res = await fetch('/netex-schema.json');
+        const res = await fetch(`${process.env.PUBLIC_URL}/netex-schema.json`);
         if (!res.ok) throw new Error(`Failed to load schema: ${res.status}`);
         const schema = await res.json();
         const definitions = (schema.definitions ?? schema.$defs ?? {}) as Record<string, unknown>;
