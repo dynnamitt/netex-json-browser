@@ -5,6 +5,8 @@ import Typography from '@mui/material/Typography';
 import CircularProgress from '@mui/material/CircularProgress';
 import Alert from '@mui/material/Alert';
 import Tooltip from '@mui/material/Tooltip';
+import Link from '@mui/material/Link';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import { ThemeProvider } from '@mui/material/styles';
 import { amberTheme } from './theme-amber';
 import { neonTheme } from './theme-neon';
@@ -69,6 +71,27 @@ function AppContent({ themeKey, onThemeChange }: { themeKey: ThemeKey; onThemeCh
             opacity: 0.8,
           }}>
             NeTEx 2.0
+          </Typography>
+          <Typography sx={{
+            fontFamily: '"IBM Plex Mono", monospace', fontSize: '0.68rem',
+            color: 'text.secondary',
+            display: 'flex', alignItems: 'center', gap: 0.5,
+          }}>
+            Using artifact(s) from{' '}
+            <Link
+              href="https://github.com/entur/netex-typescript-model"
+              target="_blank"
+              rel="noopener noreferrer"
+              sx={{
+                color: 'secondary.main',
+                display: 'inline-flex', alignItems: 'center', gap: 0.25,
+                textDecorationColor: 'transparent',
+                '&:hover': { textDecorationColor: 'inherit' },
+              }}
+            >
+              entur/netex-typescript-model
+              <OpenInNewIcon sx={{ fontSize: '0.7rem' }} />
+            </Link>
           </Typography>
         </Box>
 
