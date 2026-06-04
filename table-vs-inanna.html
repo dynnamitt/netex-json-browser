@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Two Tables, Two Philosophies — netex-json-browser vs Inanna</title>
+<style>
+  :root{
+    --bg:#0e0f12; --panel:#16181d; --panel-2:#1c1f26; --line:#2a2e38;
+    --ink:#e7e3da; --muted:#9aa0ac; --amber:#ffb74d; --neon:#5ee0c5;
+    --react:#61dafb; --mui:#3b82f6; --radius:14px;
+    --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:radial-gradient(1100px 600px at 80% -10%,#1b1d24 0,var(--bg) 60%);
+    color:var(--ink);font:16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:860px;margin:0 auto;padding:56px 22px 90px}
+  a{color:var(--neon);text-decoration:none;border-bottom:1px solid transparent;transition:.15s}
+  a:hover{border-bottom-color:var(--neon)}
+  header.hero{margin-bottom:34px}
+  .kicker{font:600 12px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--amber)}
+  h1{font-size:clamp(28px,5vw,42px);line-height:1.1;margin:.45em 0 .2em;letter-spacing:-.02em}
+  h1 em{font-style:normal;color:var(--amber)}
+  .sub{color:var(--muted);font-size:18px;max-width:62ch}
+  /* logo chips */
+  .stacks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:30px 0 8px}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+  .chip{display:inline-flex;align-items:center;gap:7px;background:var(--panel-2);
+    border:1px solid var(--line);border-radius:999px;padding:5px 11px 5px 8px;
+    font:600 12.5px var(--mono);color:var(--ink)}
+  .chip img{width:15px;height:15px;display:block}
+  /* cards */
+  .card{background:linear-gradient(180deg,var(--panel),#13151a);border:1px solid var(--line);
+    border-radius:var(--radius);padding:20px 22px}
+  .card h3{margin:0 0 4px;font-size:18px;display:flex;align-items:center;gap:9px}
+  .card h3 .dot{width:9px;height:9px;border-radius:50%}
+  .card .tag{font:600 11px var(--mono);color:var(--muted);letter-spacing:.06em}
+  .card p{margin:.6em 0;font-size:14.5px;color:#cdd2db}
+  .a .dot{background:var(--amber);box-shadow:0 0 12px var(--amber)}
+  .b .dot{background:var(--neon);box-shadow:0 0 12px var(--neon)}
+  code{font:13px var(--mono);background:#0a0b0e;border:1px solid var(--line);
+    border-radius:6px;padding:1px 6px;color:var(--amber)}
+  .b code{color:var(--neon)}
+  /* prose */
+  section.prose{margin-top:40px}
+  section.prose h2{font-size:13px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--muted);font-family:var(--mono);border-top:1px solid var(--line);
+    padding-top:22px;margin-top:40px}
+  .lede{font-size:17px}
+  /* compare table */
+  table{width:100%;border-collapse:collapse;margin:18px 0;font-size:14px}
+  th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  thead th{font:600 11px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+  thead th:nth-child(2){color:var(--amber)} thead th:nth-child(3){color:var(--neon)}
+  td:first-child{color:var(--muted);font-weight:600;white-space:nowrap}
+  tbody tr:hover{background:#ffffff06}
+  /* footnotes */
+  footer{margin-top:46px;border-top:1px solid var(--line);padding-top:20px;
+    font-size:13px;color:var(--muted)}
+  footer .links{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
+  footer a{display:inline-flex;align-items:center;gap:6px}
+  footer img{width:14px;height:14px;filter:grayscale(.2)}
+  .pull{border-left:2px solid var(--amber);padding:2px 0 2px 16px;margin:22px 0;
+    color:#dfe3ea;font-size:16px}
+  @media(max-width:640px){.stacks{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="kicker">Field notes · table layer</div>
+    <h1>Two tables,<br><em>two philosophies</em></h1>
+    <p class="sub">Both are React&nbsp;19 apps in the Entur / NeTEx orbit, both render transit
+    data in a grid — yet they make opposite bets on <strong>who owns the table</strong>.</p>
+
+    <div class="stacks">
+      <div class="card a">
+        <h3><span class="dot"></span>netex-json-browser</h3>
+        <span class="tag">this repo · a viewer</span>
+        <div class="chip-row">
+          <span class="chip"><img src="https://cdn.simpleicons.org/react/61dafb" alt="">React 19</span>
+          <span class="chip"><img src="https://cdn.simpleicons.org/mui/007fff" alt="">MUI 9 · X&nbsp;DataGrid</span>
+          <span class="chip"><img src="https://cdn.simpleicons.org/createreactapp/09d3ac" alt="">CRA</span>
+          <span class="chip"><img src="https://cdn.simpleicons.org/typescript/3178c6" alt="">TS</span>
+        </div>
+      </div>
+      <div class="card b">
+        <h3><span class="dot"></span>Inanna</h3>
+        <span class="tag">a fork-a-blueprint</span>
+        <div class="chip-row">
+          <span class="chip"><img src="https://cdn.simpleicons.org/react/61dafb" alt="">React 19</span>
+          <span class="chip"><img src="https://cdn.simpleicons.org/mui/007fff" alt="">MUI 7 core</span>
+          <span class="chip"><img src="https://cdn.simpleicons.org/vite/646cff" alt="">Vite</span>
+          <span class="chip"><img src="https://cdn.simpleicons.org/maplibre/396cb2" alt="">MapLibre</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="prose">
+    <p class="lede">When you need to put rows on a screen, you choose where the cleverness lives.
+    These two projects sit at the extremes.</p>
+
+    <h2>The viewer — lean on the grid</h2>
+    <p><a href="https://github.com/dynnamitt/netex-json-browser">netex-json-browser</a> drops a
+    batteries-included grid straight into the page. <code>SchemaTable.tsx</code> hands a hardcoded
+    <code>COLUMNS</code> array to MUI&nbsp;X <strong>DataGrid</strong>, and the library does the heavy
+    lifting — virtualization, pagination, column resize, sort headers — for free. The repo writes
+    almost no table machinery; it spends its effort on <em>one</em> table done well: <code>RoleBadge</code>
+    cell renderers, a <code>Descr.</code> info-icon tooltip column, client-side search + role filter
+    (<code>displayRows</code>), and URL state sync (<code>?def=Name</code>) so any definition is a
+    shareable, back-button-aware deep link.</p>
+    <p class="pull">One purpose, one table. The grid is a dependency, not a design problem.</p>
+
+    <h2>The blueprint — own the abstraction</h2>
+    <p><a href="https://github.com/entur/inanna">Inanna</a> refuses to bind itself to any single
+    table. Instead of a grid library it ships a <strong>generic, config-driven data view</strong>:
+    <code>GenericDataViewPage</code> reads a per-entity <code>*ViewConfig.ts</code> and assembles the
+    UI from plain MUI core parts — <code>DataTableHeader</code>, <code>DataPageContent</code> — wired
+    by hooks like <code>useDataViewTableLogic</code> and <code>useDataViewSearch</code> over a shared
+    <code>Order</code> / sorting type. Declare a config for a new entity and you get a table
+    <em>and</em> a MapLibre map view, no new components. The cost of that generality: the demo
+    domain still leaks into the generic layer (hardcoded <code>'ParentStopPlace'</code> checks),
+    which <a href="https://github.com/entur/inanna/issues/5">issue&nbsp;#5</a> and
+    <code>OPEN_QUESTIONS.md</code> exist to scrub.</p>
+
+    <h2>Side by side</h2>
+    <table>
+      <thead><tr><th>Dimension</th><th>netex-json-browser</th><th>Inanna</th></tr></thead>
+      <tbody>
+        <tr><td>Grid engine</td><td>MUI&nbsp;X DataGrid (library)</td><td>bespoke, over MUI core</td></tr>
+        <tr><td>Columns</td><td>hardcoded <code>COLUMNS</code></td><td>declarative <code>ViewConfig</code></td></tr>
+        <tr><td>Scope</td><td>one schema table</td><td>N entities, reusable</td></tr>
+        <tr><td>Reuse goal</td><td>none — purpose-built</td><td>fork &amp; extend</td></tr>
+        <tr><td>Companion view</td><td>$ref-navigating JSON drawer</td><td>MapLibre map</td></tr>
+        <tr><td>Search / sort</td><td>given by DataGrid</td><td>own hooks + Order type</td></tr>
+        <tr><td>Toolchain</td><td>Create React App</td><td>Vite</td></tr>
+      </tbody>
+    </table>
+
+    <h2>The takeaway</h2>
+    <p>Neither is wrong — they answer different questions. A viewer over a single generated
+    artifact should <strong>rent</strong> a powerful grid and move on; that is exactly what this
+    repo does, and the payoff is deep-linkable, low-maintenance browsing. A blueprint meant to be
+    forked into many domains must <strong>own</strong> its table so the abstraction, not the column
+    list, is the reusable unit. Inanna pays in indirection now to make the tenth entity as cheap as
+    the first. Pick the bet that matches your blast radius.</p>
+  </section>
+
+  <footer>
+    Sources &amp; further reading
+    <div class="links">
+      <a href="https://github.com/dynnamitt/netex-json-browser"><img src="https://cdn.simpleicons.org/github/9aa0ac" alt="">netex-json-browser</a>
+      <a href="https://github.com/entur/inanna"><img src="https://cdn.simpleicons.org/github/9aa0ac" alt="">entur/inanna</a>
+      <a href="https://github.com/entur/inanna/issues/5"><img src="https://cdn.simpleicons.org/github/9aa0ac" alt="">Inanna issue #5 — de-leak the generic layer</a>
+      <a href="https://mui.com/x/react-data-grid/"><img src="https://cdn.simpleicons.org/mui/9aa0ac" alt="">MUI X DataGrid docs</a>
+      <a href="https://netex-cen.eu/"><img src="https://cdn.simpleicons.org/europeanunion/9aa0ac" alt="">NeTEx (Network Timetable Exchange)</a>
+    </div>
+  </footer>
+
+</div>
+</body>
+</html>
